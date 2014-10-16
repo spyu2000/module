@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="GB2312"?>
+<document_manage>
+	<document name="轨迹记录文件管理">
+		<!-- 文件存放路径 -->
+		<path>D://nfs1</path>
+		<!-- 文件名格式，必须能表示时间 -->
+		<fileNameFormat>YYYYMMDD</fileNameFormat>
+		<!-- 文件名前缀 -->
+		<beforeFileNameFormat>TRK</beforeFileNameFormat>
+		<!-- 文件名后缀 -->
+		<endFileNameFormat></endFileNameFormat>
+		<!-- 保存文件天数 -->
+		<para key="save_file_days" value="20"/>
+		<!-- 是否启用 -->
+		<enable>false</enable>
+	</document>
+	<document name="模糊查询文件管理">
+		<!-- 文件存放路径 -->
+		<path>E:\home\fleety\SNAPSHOT</path>
+		<!-- 文件名格式，必须能表示时间 -->
+		<fileNameFormat>YYYYMMDD</fileNameFormat>
+		<!-- 文件名前缀 -->
+		<beforeFileNameFormat></beforeFileNameFormat>
+		<!-- 文件名后缀 -->
+		<endFileNameFormat></endFileNameFormat>
+		<!-- 保存文件天数 -->
+		<para key="save_file_days" value="20"/>
+		<!-- 是否启用 -->
+		<enable>false</enable>
+	</document>
+	<document name="日志文件管理">
+		<!-- 文件存放路径 -->
+		<path>E:\workspace(Iflow)\FJMainServer\log</path>
+		<!-- 文件名格式，必须能表示时间 -->
+		<fileNameFormat>YYYY-MM-DD</fileNameFormat>
+		<!-- 文件名前缀 -->
+		<beforeFileNameFormat></beforeFileNameFormat>
+		<!-- 文件名后缀 -->
+		<endFileNameFormat>.log</endFileNameFormat>
+		<!-- 保存文件天数 -->
+		<para key="save_file_days" value="20"/>
+		<!-- 是否启用 -->
+		<enable>false</enable>
+	</document>
+	<document name="日志文件管理">
+		<!-- 文件存放路径 -->
+		<path>E:\workspace(Iflow)\FJMainServer\log</path>
+		<!-- 文件名格式，必须能表示时间 -->
+		<fileNameFormat>MMDDHHmm</fileNameFormat>
+		<!-- 文件名前缀 -->
+		<beforeFileNameFormat>day.log.bak_</beforeFileNameFormat>
+		<!-- 文件名后缀 -->
+		<endFileNameFormat></endFileNameFormat>
+		<!-- 保存文件天数 -->
+		<para key="save_file_days" value="20"/>
+		<!-- 是否启用 -->
+		<enable>false</enable>
+	</document>
+	
+</document_manage>

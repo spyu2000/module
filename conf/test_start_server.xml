@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="GB2312"?>
+
+<start_server>
+	
+	<server>
+		<server_name>另外一个Server_Startup服务</server_name>
+		<desc></desc>
+		<class_name>com.fleety.server.Server_Startup</class_name>
+		<para key="cfg_path" value="conf/testcase/data_sync.xml"/>
+		<enable_server>true</enable_server>
+	</server>
+
+	<server>
+		<server_name>Updator Server</server_name>
+		<desc></desc>
+		<class_name>server.net.updator.server.AutoUpdatorServer</class_name>
+		<create_method></create_method>
+		<enable_server>true</enable_server>
+		<failure_system_exit>false</failure_system_exit>
+
+		<para key="ip" value="127.0.0.1"/>
+		<para key="port" value="1967"/>
+		<para key="lastest_version" value="1.1.7"/>
+	</server>
+	
+	
+	<server>
+		<server_name>Updator Client</server_name>
+		<desc></desc>
+		<class_name>server.net.updator.client.AutoUpdatorClient</class_name>
+		<create_method></create_method>
+		<enable_server>true</enable_server>
+		<failure_system_exit>false</failure_system_exit>
+
+		<para key="sip" value="127.0.0.1"/>
+		<para key="sport" value="1967"/>
+		
+		<para key="version_file" value="filesync.jar"/>
+		<para key="version_cls_name" value="com.fleety.sync.client.updator.VersionInfo"/>
+		<para key="version_field_name" value="CLIENT_VERSION"/>
+	</server>
+	
+	<server>
+		<server_name>暂停服务</server_name>
+		<desc></desc>
+		<class_name>server.help.PauseServer</class_name>
+		<para key="pause_time" value="2000000"/>
+		<enable_server>true</enable_server>
+	</server>
+	
+	<server>
+                <server_name>module monitor mail server</server_name>
+                <class_name>server.mail.MailServer</class_name>
+                <create_method></create_method>
+                <enable_server>true</enable_server>
+                <failure_system_exit>false</failure_system_exit>
+
+                <para key="smtp_host" value="222.73.85.116"/>
+                <para key="mail_account" value="customer@fleety.com"/>
+                <para key="mail_password" value="123fleety"/>
+                <para key="mail_save_path" value="mailStore"/>
+                <para key="polling_interval" value="10"/>
+                <para key="interval_days" value="2"/>
+                <para key="is_delete_history_mail" value="true"/>
+                <para key="save_mail_days" value="5"/>
+                
+                
+                <para key="customer_name" value="test"/>
+                <para key="receiver" value="edmund.xu@fleety.com;shipeng.yu@fleety.com;jin.lian@fleety.com;sunny.zhang@fleety.com;haihua.zhu@fleety.com"/>
+        </server>
+	<server>
+		<server_name>app_manage_server</server_name>
+		<class_name>server.manager.app.autoupdate.server.AutoUpdateServer</class_name>
+		<create_method></create_method>
+		<enable_server>true</enable_server>
+		<failure_system_exit>false</failure_system_exit>
+
+		<para key="ip" value="localhost"/>
+		<para key="port" value="27892"/>
+		<para key="update_file_path" value="conf/auto_update_app.xml"/>
+	</server>
+	
+	<server>
+		<server_name>app_manage_client</server_name>
+		<class_name>server.manager.app.autoupdate.client.AutoUpdateClient</class_name>
+		<create_method></create_method>
+		<enable_server>true</enable_server>
+		<failure_system_exit>false</failure_system_exit>
+
+		<para key="ip" value="localhost"/>
+		<para key="port" value="27892"/>
+		<para key="update_file_path" value="conf/auto_update_client_app.xml"/>
+	</server>
+	
+	<server>
+		<server_name>暂停服务</server_name>
+		<desc></desc>
+		<class_name>server.help.PauseServer</class_name>
+		<para key="pause_time" value="2000000"/>
+		<enable_server>true</enable_server>
+	</server>
+	
+	
+	<server>
+		<server_name>另外一个Server_Startup服务</server_name>
+		<desc></desc>
+		<class_name>com.fleety.server.Server_Startup</class_name>
+		<para key="cfg_path" value="conf/testcase/remote_execute_by_rmi_test.xml"/>
+		<enable_server>true</enable_server>
+	</server>
+	
+	<server>
+		<server_name>日记服务</server_name>
+		<desc>重定向日记信息</desc>
+		<class_name>server.log.LogServer</class_name>
+		<create_method></create_method>
+		<enable_server>false</enable_server>
+		<failure_system_exit>false</failure_system_exit>
+
+		<para key="append_head" value="true"/>
+		<para key="log_dir" value="./log"/>
+		
+		<para key="INFO_log_name" value="info.log"/>
+		<para key="ERR_log_name" value="info.log"/>
+	</server>
+	<server>
+		<server_name>IE渲染窗口服务</server_name>
+		<desc>使用本地exe渲染页面的窗口</desc>
+		<class_name>server.ui.ieshow.IEShowFrameServer</class_name>
+		<create_method></create_method>
+		<enable_server>false</enable_server>
+
+		<para key="frame_title" value="拓展绿的监管系统"/>
+		<para key="icon_name" value="wicon.png"/>
+		<para key="default_url" value="http://gps.sztb.gov.cn"/>
+	</server>
+
+	<server depends="">
+		<server_name>数据库连接池服务</server_name>
+		<desc>构建一个数据库连接池，为其它需要使用的地方提供连接对象.必须启动.</desc>
+		<class_name>server.db.DbServer</class_name>
+		<create_method>getSingleInstance</create_method>
+		<enable_server>false</enable_server>
+		<failure_system_exit>true</failure_system_exit>
+
+		<para key="driver" value="oracle.jdbc.driver.OracleDriver"/>
+		<para key="url" value="jdbc:oracle:thin:@192.168.0.31:1521:demo"/>
+		<para key="user" value="iflow"/>
+		<para key="pwd" value="iflow123"/>
+
+		<para key="use_time" value="60000"/>
+
+		<para key="init_num" value="1"/>
+		<para key="min_num" value="1"/>
+		<para key="max_num" value="5"/>
+
+		<!-- 当该参数为true时，有连接超时使用或者不能获取到连接时将会打印出连接的使用者。 -->
+		<para key="enable_stack" value="true"/>
+	</server>
+
+
+	<server>
+		<server_name>调试服务</server_name>
+		<class_name>test.DbTest</class_name>
+		<create_method></create_method>
+		<enable_server>false</enable_server>
+		<failure_system_exit>false</failure_system_exit>
+	</server>
+
+	<server>
+		<server_name>SOCKET SERVER服务</server_name>
+		<desc></desc>
+		<class_name>server.socket.serversocket.FleetySocketServer</class_name>
+		<create_method></create_method>
+		<enable_server>true</enable_server>
+		<failure_system_exit>true</failure_system_exit>
+
+		<para key="timeout" value="60000"/>
+		<para key="ip" value="192.168.0.116"/>
+		<para key="selector_num" value="20"/>
+		<para key="port" value="80"/>
+		<para key="reader" value="server.socket.help.PrintCmdReader"/>
+		<para key="releaser" value="server.socket.help.DefaultCmdReleaser"/>
+	</server>
+
+	<server>
+		<server_name>暂停服务</server_name>
+		<desc></desc>
+		<class_name>server.help.PauseServer</class_name>
+		<para key="pause_time" value="2000000"/>
+		<enable_server>false</enable_server>
+	</server>
+
+	<server>
+		<server_name>SOCKET CLIENT服务</server_name>
+		<desc></desc>
+		<class_name>server.socket.socket.FleetySocket</class_name>
+		<create_method></create_method>
+		<enable_server>false</enable_server>
+		<failure_system_exit>true</failure_system_exit>
+
+		<para key="ip" value="192.168.0.116"/>
+		<para key="port" value="1980"/>
+		<para key="reader" value="server.socket.help.UTFCmdReader"/>
+		<para key="releaser" value="server.socket.help.DefaultCmdReleaser"/>
+	</server>
+
+	<server>
+		<server_name>SOCKET CLIENT服务</server_name>
+		<desc></desc>
+		<class_name>test.SocketClientTest</class_name>
+		<create_method></create_method>
+		<enable_server>false</enable_server>
+		<failure_system_exit>true</failure_system_exit>
+
+		<para key="ip" value="192.168.0.116"/>
+		<para key="port" value="8056"/>
+		<para key="reader" value="server.socket.help.UTFCmdReader"/>
+		<para key="releaser" value="server.socket.help.DefaultCmdReleaser"/>
+	</server>
+
+	<server>
+		<server_name>轨迹服务</server_name>
+		<desc>轨迹输入输出服务</desc>
+		<class_name>server.track.TrackServer</class_name>
+		<create_method>getSingleInstance</create_method>
+		<enable_server>false</enable_server>
+		<failure_system_exit>false</failure_system_exit>
+
+		<para key="track_class_name" value="server.track.BasicTrack"/>
+		<para key="version" value="V1"/>
+		<para key="thread_num" value="5"/>
+		
+		<para key="path" value="track"/>
+		<para key="disk_volume" value="/nfs"/>
+		<para key="volume_count" value="1"/>
+		<para key="months_in_volume" value="1"/>
+		<!-- 缓存轨迹的最大个数 -->
+		<para key="cache_max_size" value="15"/>
+		<!--缓存轨迹的最大时间，单位分钟-->
+		<para key="cache_max_time" value="5"/>
+		<!--是否立即关闭out流-->
+		<para key="is_auto_close_out" value="true"/>
+
+		<para key="经度" value="true"/>
+		<para key="纬度" value="true"/>
+		<para key="汇报时间" value="true"/>
+		<para key="状态" value="true"/>
+		<para key="速度" value="true"/>
+		<para key="方向" value="true"/>
+		<para key="公里数" value="true"/>
+		<para key="温度1" value="false"/>
+		<para key="温度2" value="false"/>
+		<para key="温度3" value="false"/>
+		<para key="温度4" value="false"/>
+		<para key="温度5" value="false"/>
+		<para key="温度6" value="false"/>
+		<para key="油量" value="false"/>
+		<para key="油量1" value="false"/>
+		<para key="报警类型" value="true"/>
+                <para key="车上人数" value="false"/>
+                <para key="设备工作" value="false"/>
+                <para key="上下人数" value="false"/>
+                <para key="记录时间" value="false"/>
+                <para key="照片信息" value="false"/>
+                <para key="驾驶员" value="true"/>
+                <para key="视频状态" value="false"/>
+	</server>
+
+	<server>
+		<server_name>SOCKET转发服务</server_name>
+		<desc>TCP,UDP信息转发服务</desc>
+		<class_name>server.proxy.socket.SocketProxyServer</class_name>
+		<create_method>getSingleInstance</create_method>
+		<enable_server>false</enable_server>
+		<failure_system_exit>false</failure_system_exit>
+
+		<!-- src-dest:one-one many-one -->
+		<para key="method" value="many-one"/>
+
+
+		
+		<para key="tcp_port" value="9999"/>
+		<para key="udp_port" value=""/>
+		<!-- 以逗号分割多个目标 -->
+		<para key="tcp_dest" value="127.0.0.1:10000"/>
+		<para key="udp_dest" value=""/>
+	</server>
+
+
+	<server>
+		<server_name>国际化服务</server_name>
+		<class_name>server.i18n.I18nServer</class_name>
+		<create_method>getSingleInstance</create_method>
+		<enable_server>false</enable_server>
+		<failure_system_exit>false</failure_system_exit>
+
+		<para key="i18n_path" value="testfile/china.xml,testfile/english.xml"/>
+	</server>
+
+
+	<server>
+		<server_name>分布式客户方2</server_name>
+		<class_name>server.distribute.client.ClientServer</class_name>
+		<create_method></create_method>
+		<enable_server>false</enable_server>
+		<failure_system_exit>false</failure_system_exit>
+
+		<para key="ip" value="localhost"/>
+		<para key="port" value="1981"/>
+
+		<para key="server_ip" value="localhost"/>
+		<para key="server_port" value="1979"/>
+		<para key="concurrent_task_num" value="2"/>
+	</server>
+	
+	<server>
+		<server_name>应用程序管理服务</server_name>
+		<class_name>server.manager.app.ApplicationManageServer</class_name>
+		<create_method></create_method>
+		<enable_server>false</enable_server>
+		<failure_system_exit>false</failure_system_exit>
+
+		<para key="is_server" value="false"/>
+
+		<para key="server_ip" value="localhost"/>
+		<para key="server_port" value="2010"/>
+		
+		<!-- 客户端专有 -->
+		<para key="client_name" value="1"/>
+		<para key="app_path" value="c:/xjs"/>
+		<para key="ip" value="localhost"/>
+		<para key="port" value="2009"/>
+		
+		<!-- 服务器端专有 -->
+		<para key="app_cfg" value="./conf/application.xml"/>
+	</server>
+	<server>
+		<server_name>邮件服务</server_name>
+		<class_name>server.mail.MailServer</class_name>
+		<create_method>getSingleInstance</create_method>
+		<enable_server>false</enable_server>
+		<failure_system_exit>false</failure_system_exit>
+
+		<!-- smtp服务器地址 -->
+		<para key="smtp_host" value="smtp.corpease.net"/>
+		<!-- email地址 -->
+		<para key="mail_account" value="repair@fleety.com"/>
+		<!-- email密码 -->
+		<para key="mail_password" value="11111"/>
+		<!-- 是否要求安全连接  为 true或false-->
+		<para key="is_need_ssl" value="true"/>
+		<!-- 发送邮件端口，可以不配，默认是25-->
+		<para key="smtp_port" value="465"/>
+		<!-- 邮件保存路径 -->
+		<para key="mail_save_path" value="E://mailStore"/>
+		<!-- 对发送失败的邮件轮询间隔，单位分钟 -->
+		<para key="polling_interval" value="10"/>
+		<!-- 对发送失败的邮件，持续发送的最大天数 单位天 -->
+		<para key="interval_days" value="7"/>
+		<!-- 历史邮件是否删除,为true时表示删除历史邮件，可配置保存最近多久的的邮件 -->
+		<para key="is_delete_history_mail" value="true"/>
+		<!-- 《当历史邮件是否删除参数》为true时，此参数有效，保存最近多久的的邮件，单位天 -->
+		<para key="save_mail_days" value="20"/>
+		
+	</server>
+	
+	<server>
+		<server_name>UDP服务</server_name>
+		<desc></desc>
+		<class_name>test.udpTest2</class_name>
+		<create_method>getSingleInstance</create_method>
+		<enable_server>false</enable_server>
+		<failure_system_exit>true</failure_system_exit>
+		<para key="localIp" value="192.168.0.127"/>
+		<para key="localPort" value="1982"/>
+		<para key="destIp" value="192.168.0.127"/>
+		<para key="destPort" value="1981"/>
+		<para key="bufferSize" value="5024"/>
+		<para key="dealDataListener" value="test.packet"/>
+	</server>
+	
+	<server>
+		<server_name>TEST服务</server_name>
+		<desc></desc>
+		<class_name>server.tray.WindowTrayServer</class_name>
+		<create_method></create_method>
+		<enable_server>true</enable_server>
+		<failure_system_exit>false</failure_system_exit>
+
+		<para key="icon" value="./src/wicon.png"/>
+		<para key="title" value="1980"/>
+		<para key="menu_item" value="_SHOW,显示"/>
+		<para key="menu_item" value="_HIDE,隐藏"/>
+		<para key="menu_item" value="_EXIT,退出"/>
+		<para key="listener" value="server.tray.listener.PrintCmdListener"/>
+		<para key="listener" value="server.tray.listener.NotifyCmdListener"/>
+		<para key="listener" value="server.tray.listener.DefaultCmdListener"/>
+	</server>
+	
+	<server>
+		<server_name>Thread Stack Print</server_name>
+		<desc></desc>
+		<class_name>server.help.ThreadStackPrintServer</class_name>
+		<create_method></create_method>
+		<enable_server>true</enable_server>
+		<failure_system_exit>false</failure_system_exit>
+
+		<para key="cycle" value="10"/>
+	</server>
+	<server>
+		<server_name>webService本地服务</server_name>
+		<desc>webService服务,用户可以自定义webService服务实现和action处理实现，默认是json格式的实现</desc>
+		<class_name>server.webservice.WebServiceServer</class_name>
+		<create_method>getSingleInstance</create_method>
+		<enable_server>true</enable_server>
+		<failure_system_exit>false</failure_system_exit>
+
+		<para key="is_print" value="true" desc="是否打印调试信息"/>
+		<para key="ip" value="localhost" desc="webservice服务ip"/>
+		<para key="port" value="9900" desc="webservice服务端口"/>
+		<para key="ws_patch" value="/webservice/jsonWebServiceInterface" desc="webservice服务名"/>
+		<para key="service_cls_name" value="server.webservice.impl.DefaultJsonWebService" desc="需要用户实现，webservice服务实现类"/>
+		<para key="action_cls_name" value="server.webservice.impl.DefaultJsonWebServiceAction" desc="需要用户实现，webservice请求处理类"/>
+	</server>
+	<server>
+		<server_name>webServiceClient服务</server_name>
+		<desc>webServiceClient服务,用户根据需要配置webServer服务端的地址</desc>
+		<class_name>server.webservice.WebServiceXFireClient</class_name>
+		<create_method>getSingleInstance</create_method>
+		<enable_server>true</enable_server>
+		<failure_system_exit>false</failure_system_exit>
+
+		<para key="web_service_url" value="http://localhost:9900/webservice/jsonWebServiceInterface?wsdl" desc="需要访问的webservice地址"/>
+		<para key="time_out" value="10000" desc="client访问超时时间,单位毫秒,默认10秒"/>
+	</server>
+</start_server>

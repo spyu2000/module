@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0032)http://www.nothome.com/IECanvas/ -->
+<HTML><HEAD><TITLE>IECanvas</TITLE>
+<META http-equiv=content-type content="text/html; charset=ISO-8859-1">
+<META content=torgeir name=author>
+<META content="MSHTML 6.00.2800.1226" name=GENERATOR></HEAD>
+<BODY>
+<H3>Want to do some weird stuff?</H3>With this code, you can embed Internet 
+Explorer or Mozilla within your java program using a java canvas. 
+<P>Here is a screenshot embedding IE in java. (This is the sample IEBrowser.java)<BR>
+<IMG alt="JavaIE screenshot" 
+src="README_files/ie.png"> </P>
+<P>This code is based on a simpler example available at <A 
+href="http://www.codeproject.com/java/javacom.asp">the Code Project</A>, but 
+with a lot of enhancements.</P>
+<UL>
+  <LI>We support callbacks allowing the ui to update URL fields, intercept the 
+  right click menu on HTML content, progress monitoring while downloading, 
+  forward/backward key enabling/disabling etc.<BR><BR>
+  <LI>The jdk1.3 jni awt gui extension is used to get to the HWND of the java 
+  canvas, allowing us to not use any sun jdk specific code. It will work on any 
+  jdk version 1.3 or higher running on windows.<BR><BR>
+  <LI>Some DHTML and Javascript integration is possible. You can get/set innerHTML
+  of any HTML element from your java code, you can get/set className. And you can 
+  also call javascript  functions present in the browser from your Java code, 
+  or have call backs in your
+  Java code which the javascript can call <BR>
+</UL>
+  Here is a screenshot of the IEDHtmlTester.java sample which illustrates this:<BR>
+  <IMG alt="DHTML Tester screenshot" src="README_files/dhtml.png">
+<UL>
+  <LI>It is possible to embed mozilla, if you register the activex plugin in the 
+  mozilla bin directory. Run "regsvr32 mozctlx.dll" in the mozilla bin directory 
+  to register it. The first time it is used, it will ask for the bin directory 
+  of the mozilla installation. Note that mozilla is still not a released product 
+  and thus embedding it might prove to be unstable. </LI></UL>Here is a screenshot 
+running with mozilla.<BR><IMG alt="JavaMozilla screenshot" 
+src="README_files/mozilla.png"> 
+<P>The code is not very polished, and there is a small annoying bug; when IE has 
+the focus, clicking in the JTextField that holds the URL doesn't bring the focus 
+back to it. This seems to be a jdk bug, since the JTextField does really receive 
+mouse events. Maybe this will be fixed with the new focus manager in jdk1.4. A 
+simple workaround is included, thanx to Erlend Pytte, Sevenmountains 
+Software.</P>
+<P>Thanx to Auvo Severinkangas for investigating the problems with rendering 
+applets which turned out to be the special thread workaround code. Reverting 
+back to old style.</P>
+<P>He has also made some changes to the handling of the context menu so that the 
+coordinates of the mouse click is returned as well. </P>
+
+<H3>Getting Started</H3>
+<UL>
+  <LI> Download the iecanvas.zip from sourceforge and extract it to a directory
+  <LI> The two files that you need for running are <b>IECanvas.dll</b> and <b>IECanvas.jar</b>
+  <LI> Make sure that <b>jawt.dll</b> is in your path. It should be in a directory like "C:\Program Files\Java\j2re1.4.2\bin"
+  <LI> There are two samples.  
+    <UL>
+	  <LI> <b>nothome.mswindows.IEBrowser.java</b>   shows you the basics of embedding a browser. Run it like this:
+	    <pre> java -cp IECanvas.jar nothome.mswindows.IEBrowser  </pre>
+	  <LI> <b>nothome.mswindows.IEDhtmlTester.java</b> shows you how to interface with DHTML and javascript. Run it like this:
+	    <pre> java -cp IECanvas.jar nothome.mswindows.IEDhtmlTester  </pre>
+	</UL>
+  <LI> <b>Do not embed IECanvas in a JInternalFrame or JSplitPane </b>. IECanvas is a heavyweight component, and you
+   cannot mix it with lightweight components. For more information read 
+   <a href="http://java.sun.com/products/jfc/tsc/articles/mixing/">Mixing heavy and light components</a>
+</UL>
+
+
+<H4>Known Issues</H4>
+<UL>
+  <LI>There might still be threading issues with this code. 
+  <LI>Future improvements will make it possible to have multiple IE windows when 
+  eg. javascript code asks for it. (Try eg. "Open in New Window" on context 
+  menu.) 
+  <LI>The context menu interceptor is only available after the page has 
+  completely loaded. 
+  <LI>Applets running with the java plugin runs inside the same VM as the one 
+  that wraps IE. Error messages from applets are output to stderr. In general, 
+  running applets with the java plugin is not very tested and YMMV. </LI> 
+</UL>
+<P>This source code in now on <A 
+href="http://sourceforge.net/projects/iecanvas">SourceForge</A>.</P>
+<P><A href="http://sourceforge.net/"><IMG height=31 alt="SourceForge.net Logo" 
+src="README_files/sflogo.png" width=88 border=0></A></P>
+<H4>Links to Win32 Java COM resources</H4>
+<UL>
+  <LI><A href="http://staff.develop.com/halloway/code/jawin.html">Jawin</A> 
+  <LI><A href="http://www.iol.ie/~locka/mozilla/mozilla.htm">Mozilla ActiveX 
+  control</A> 
+  <LI><A href="http://www.nevaobject.com/java/index.htm">NevaSoft's Java2COM</A> 
+
+  <LI><A href="http://www.linar.com/">Linar, makers of JIntegra</A> 
+  <LI><A 
+  href="http://www.geocities.com/SiliconValley/Orchard/6171/JAVA2COM.htm">Sample 
+  code to launch Word from Java</A> 
+  <LI><A href="http://www.must.de/Javactpe.htm">Java Bean to control Word</A> 
+  <LI><A href="http://www.acm.uiuc.edu/windevils/projects/webclient/">Internet 
+  Explorer Webclient</A> 
+  <LI><A href="http://www.revusky.com/hacks/index.html">Java Delphi 
+  Bridge</A><BR></LI></UL>
+<P>If you want to wrap mozilla, you might want to take a look at <A 
+href="http://browserg.mozdev.org/index.html">the BrowserG project</A> as 
+well.</P>
+<P>- Torgeir</P></BODY></HTML>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="GBK"?>
+
+<i18n lang="default">
+	<group name="test_group" desc="测试组">
+		<info name="test_info_1">你们好,我想和{0}交朋友!</info>
+		<info name="test_info_2">你们好,我想和'{0}'交朋友!</info>
+	</group>
+</i18n>

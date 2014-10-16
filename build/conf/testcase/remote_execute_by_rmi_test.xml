@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="GB2312"?>
+
+<!--
+	打开第一个和第四个服务,模拟服务器端
+	打开第二个和第三个,模拟客户端,并且进行调用测试.
+-->
+<start_server>
+	<server>
+		<server_name>remote_execute_by_rmi_server</server_name>
+		<desc>远程执行服务器端</desc>
+		<class_name>server.remote_execute_by_rmi.server.RemoteExecuteByRmiServer</class_name>
+		<create_method></create_method>
+		<enable_server>false</enable_server>
+		<failure_system_exit>false</failure_system_exit>
+
+		<para key="ip" value="localhost"/>
+		<para key="port" value="1979"/>
+	</server>
+	
+	<server>
+		<server_name>remote_execute_by_rmi_client</server_name>
+		<desc>远程执行服务客户端</desc>
+		<class_name>server.remote_execute_by_rmi.client.RemoteExecuteByRmiClient</class_name>
+		<create_method></create_method>
+		<enable_server>true</enable_server>
+		<failure_system_exit>false</failure_system_exit>
+
+		<para key="ip" value="127.0.0.1"/>
+		<para key="port" value="1979"/>
+		<para key="cls_name" value="server.remote_execute_by_rmi.help.RemoteExecuteExample"/>
+	</server>
+	<server>
+		<server_name>测试服务</server_name>
+		<desc>远程执行测试服务</desc>
+		<class_name>server.remote_execute_by_rmi.help.RemoteExecuteExample</class_name>
+		<create_method></create_method>
+		<enable_server>true</enable_server>
+		<failure_system_exit>false</failure_system_exit>
+	</server>
+
+	<server>
+		<server_name>暂停服务</server_name>
+		<desc></desc>
+		<class_name>server.help.PauseServer</class_name>
+		<para key="pause_time" value="2000000"/>
+		<enable_server>true</enable_server>
+	</server>
+</start_server>

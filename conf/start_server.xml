@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="GB2312"?>
+
+<start_server>
+	
+	<server>
+		<server_name>IE渲染窗口服务</server_name>
+		<desc>使用本地exe渲染页面的窗口</desc>
+		<class_name>server.ui.ieshow.IEShowFrameServer</class_name>
+		<create_method></create_method>
+		<enable_server>true</enable_server>
+
+		<para key="frame_title" value="出租车运证驾驶员信息同步"/>
+		<para key="icon_name" value="wicon.png"/>
+		<para key="default_url" value="http://221.131.114.18:8080/PublicAccess/jsp/wuxi/driver_info_sync.jsp"/>
+	</server>
+</start_server>

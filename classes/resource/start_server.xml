@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="GB2312"?>
+
+<start_server>
+	<server>
+		<server_name>日记服务</server_name>
+		<desc>重定向日记信息</desc>
+		<class_name>server.log.LogServer</class_name>
+		<create_method></create_method>
+		<enable_server>true</enable_server>
+		<failure_system_exit>false</failure_system_exit>
+
+		<para key="append_head" value="true"/>
+		<para key="log_dir" value="./log"/>
+	</server>
+	<server>
+		<server_name>IE渲染窗口服务</server_name>
+		<desc>使用本地exe渲染页面的窗口</desc>
+		<class_name>server.ui.ieshow.IEShowFrameServer</class_name>
+		<create_method></create_method>
+		<enable_server>true</enable_server>
+
+		<para key="frame_title" value="拓展绿的监管系统"/>
+		<para key="icon_name" value="wicon.png"/>
+		<para key="default_url" value="http://gps.sztb.gov.cn"/>
+	</server>
+</start_server>

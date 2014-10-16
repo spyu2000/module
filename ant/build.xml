@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="jar" basedir=".." default="jar">	
+  	<property name="src" location="src"/>
+  	<property name="bin" location="classes"/>
+
+	  <path id="build.classpath">
+		<fileset dir="${bin}"><include name="*"/></fileset>
+		<fileset dir="lib"><include name="*.jar"/></fileset>
+	  </path>
+
+	<target name="init">
+    	<mkdir dir="build/lib" />
+	</target>
+
+	<target name="rmic">
+		<rmic base="${bin}" includes="**/*RmiInterface.class" sourcebase="${src}"  stubversion="1.2">
+  			<classpath refid="build.classpath"/>  
+  		</rmic>
+	</target>
+
+	<target name="jar" depends="init,rmic">
+		<mkdir dir="build"/>
+
+		<jar basedir="${bin}" manifest="${bin}/META-INF/MANIFEST.MF" destfile="build/module.jar"/>
+		
+		<jar basedir="${bin}" manifest="${bin}/META-INF/MANIFEST.MF" includes="com/fleety/util/pool/" destfile="build/lib/pool.jar"/>
+		<jar basedir="${bin}" manifest="${bin}/META-INF/MANIFEST.MF" includes="com/fleety/track/" destfile="build/lib/track.jar"/>
+
+		<jar basedir="${bin}" manifest="${bin}/META-INF/MANIFEST.MF" includes="com/fleety/base/" destfile="build/lib/base.jar"/>
+
+		<jar basedir="${bin}" manifest="${bin}/META-INF/MANIFEST.MF" includes="com/fleety/server/" destfile="build/serverboot_dog.jar"/>
+		<jar basedir="${bin}" manifest="${bin}/META-INF/MANIFEST.MF" excludes="com/fleety/server/IDog.class" includes="com/fleety/server/" destfile="build/serverboot.jar"/>
+
+		<jar basedir="${bin}" manifest="${bin}/META-INF/MANIFEST.MF" includes="server/" excludes="server/distribute/test/" destfile="build/lib/server.jar">
+			<!--<fileset dir="${bin}/resource/"/>-->
+		</jar>
+
+		<!--
+		<jar basedir="${bin}" includes="server/distribute/test/" destfile="build/lib/distribute_test.jar"/>
+		-->
+
+		<copy todir="build/conf/">
+			<fileset dir="conf/">
+				<include name="**/*.xml"/>
+			</fileset>
+		</copy>
+
+		<copy todir="build/other_lib/">
+			<fileset dir="lib/">
+				<include name="**/*.jar"/>
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="cp" depends="jar">
+		<!-- copy jar to iflow map server -->
+		<copy todir="../iflow3/lib/self" flatten="true">
+			<fileset dir="build">
+				<include name="**/*.jar"/>
+				<exclude name="other_lib/*.jar"/>
+			</fileset>
+		</copy>
+	</target>
+</project>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="GB2312"?>
+<cfg>
+	<app>
+		<app_name>ibus2_stop_client</app_name>
+		<app_flag>116-5</app_flag>
+		<version>1.0.5</version>
+		<path>d:/ibus2_client</path>
+		<start_bat>start.bat</start_bat>
+		<stop_port>27893</stop_port>
+	</app>
+</cfg>

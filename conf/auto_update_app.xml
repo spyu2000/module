@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="GB2312"?>
+
+<cfg>
+	<app>
+		<app_name>ibus2_stop_client</app_name>
+		<desc>ibus2 stop client application</desc>
+		
+		<version>1.0.5</version>
+		<path>./app/ibus2_client.jar</path>
+		
+		<enable>true</enable>
+	</app>
+</cfg>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="GBK"?>
+
+<match>
+	<char-set name="default" desc="默认匹配字符集">
+		<char key="A" value="B"/>
+		<char key="美国" value="中国"/>	
+		<char key="鎄" value="你"/>
+	</char-set>
+</match>

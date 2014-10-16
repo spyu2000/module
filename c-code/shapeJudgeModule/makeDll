@@ -1,0 +1,2 @@
+export LD_LIBRARY_PATH=.:$LD_LIBRARY_PATH
+g++ -fPIC -shared -o libjudgeModule.so  judgeAction.cpp AreaSegmentInfo.cpp PointContainer.cpp Point.cpp PointInfo.cpp RoadContainer.cpp RoadSegmentInfo.cpp stdafx.cpp Util.cpp AreaContainer.cpp AreaInfo.cpp

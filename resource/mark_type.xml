@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="GBK"?>
+
+<mark_type>
+	<point>
+		<mark name="酒店" code="" img="" font="" color="" bkColor="" borderColor=""/>
+		<mark name="旅馆" code="" img="" font="" color="" bkColor="" borderColor=""/>
+	</point>
+	
+	<line>
+		<mark name="超速线路" code="" width="" color="" alpha=""/>
+		<mark name="危险线路" code="" width="" color="" alpha=""/>
+	</line>
+	
+	<region>
+		<mark name="违法高发区域" code="" fillColor="" borderColor="" alpha=""/>
+		<mark name="事故高发区域" code="" fillColor="" borderColor="" alpha=""/>
+	</region>
+</mark_type>

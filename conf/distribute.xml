@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="GB2312"?>
+
+<distribute_server>
+	<server>
+		<server_name>测试服务</server_name>
+		<desc></desc>
+		<class_name>server.distribute.test.PrintServer</class_name>
+		<enable_server>false</enable_server>
+		
+		<jar>distribute/distribute_test.jar</jar>
+
+		<para key="timeout" value="10000"/>
+	</server>
+	<server>
+		<server_name>驾驶员交接班分析服务</server_name>
+		<desc></desc>
+		<class_name>distribute.driver.DriverChangeAnalysisServer</class_name>
+		<enable_server>true</enable_server>
+		
+		<jar>distribute/distribute.jar;distribute/classes12.jar</jar>
+
+		<para key="timeout" value="60000"/>
+
+		<para key="driver" value="oracle.jdbc.driver.OracleDriver"/>
+		<para key="url" value="jdbc:oracle:thin:@192.168.0.184:1521:demo"/>
+		<para key="user" value="iflow"/>
+		<para key="pwd" value="iflow123"/>
+		
+		<para key="track_path" value="/trace/nfs/TRACK"/>
+	</server>
+</distribute_server>

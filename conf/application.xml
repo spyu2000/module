@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="GB2312"?>
+
+<cfg>
+	<app>
+		<app_name>test</app_name>
+		<desc>平台节点应用程序</desc>
+		<enable>true</enable>
+
+		<owner></owner>
+		
+		<!-- 应用程序所在的位置 -->
+		<app_path>E:\test</app_path>
+		
+		<!-- 命令执行时的当前目录是应用程序所在目录 -->
+		<exec_file>server.sh</exec_file>
+		<start_cmd>start.bat</start_cmd>
+		<stop_cmd></stop_cmd>
+	</app>
+</cfg>

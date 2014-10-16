@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="GB2312"?>
+
+<!--
+	<var name="" value="" system_property="" desc="">  变量名称 值 描述 如果配置了creator,并且能产出value信息,value将被覆盖 system_property为true代表信息将放置进入System.setProperty
+		<creator clsname="">        变量产生器,必须继成server.var.IValueCreator
+			<para key="" value=""/> 产生器的参数
+		</creator>
+	</var>
+
+	<group>不是必需的.
+-->
+<var-set>
+	<group desc="系统属性组">
+		<var name="java.rmi.server.hostname" value="$_IP$" system_property="true"/>
+	</group>
+
+	<group desc="变量信息组">
+		<var name="_IP" value="127.0.0.1" desc="程序需要使用的IP地址">
+			<creator clsname="server.var.help.IpValueCreator">
+				<para key="is_name" value=""/>
+				<para key="ip_part" value=""/>
+				<para key="ip" value="192.168.0.116"/>
+			</creator>
+		</var>
+		<var name="_PORT" value="9022"/>
+	
+		<var name="_RMI" value="//$_IP$:$_PORT$/"/>
+		<var name="_CAR_PROPERTY_RMI" value="$_RMI$carProperty"/>
+	</group>
+</var-set>

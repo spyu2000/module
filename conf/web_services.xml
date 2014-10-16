@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="GB2312"?>
+
+
+<web_services>
+	<web_service>
+		<service_name>demo</service_name>
+		<desc>WEB SERVICE Demo</desc>
+		<class_name>server.webServiceContainer.DemoWebService</class_name>
+		<enable_service>false</enable_service>
+	</web_service>
+	
+</web_services>
