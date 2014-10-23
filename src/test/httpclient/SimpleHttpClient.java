@@ -7,6 +7,12 @@ import java.net.URISyntaxException;
 
 
 
+
+
+
+
+import java.util.concurrent.TimeUnit;
+
 import org.apache.http.Header;
 import org.apache.http.HeaderElement;
 import org.apache.http.HeaderElementIterator;
@@ -22,12 +28,16 @@ import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.params.ClientPNames;
 import org.apache.http.client.utils.URIBuilder;
+import org.apache.http.conn.ClientConnectionManager;
 import org.apache.http.conn.scheme.PlainSocketFactory;
 import org.apache.http.conn.scheme.Scheme;
 import org.apache.http.conn.scheme.SchemeRegistry;
 import org.apache.http.conn.ssl.SSLSocketFactory;
+import org.apache.http.impl.DefaultConnectionReuseStrategy;
 import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.DefaultConnectionKeepAliveStrategy;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.client.DefaultHttpRequestRetryHandler;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.conn.PoolingClientConnectionManager;
 import org.apache.http.message.BasicHeaderElementIterator;
@@ -69,10 +79,37 @@ public class SimpleHttpClient {
 		//多连接的线程安全的管理器 
 		PoolingClientConnectionManager pccm = new PoolingClientConnectionManager(schreg);
 		pccm.setDefaultMaxPerRoute(100);	//每个主机的最大并行链接数 
-		pccm.setMaxTotal(100);			//客户端总并行链接最大数    
+		pccm.setMaxTotal(200);			//客户端总并行链接最大数    
+		
 		
 		DefaultHttpClient httpClient = new DefaultHttpClient(pccm, params);  
+		httpClient.setHttpRequestRetryHandler(new DefaultHttpRequestRetryHandler());
+		httpClient.setReuseStrategy(new DefaultConnectionReuseStrategy());
+		httpClient.setKeepAliveStrategy(new DefaultConnectionKeepAliveStrategy());
+		new IdleConnectionMonitorThread(pccm);
 		return httpClient;
+	}
+	
+	public static void httpGet(){
+		HttpResponse response = null;
+		HttpEntity entity = null;
+		try {
+		  HttpGet get = new HttpGet();
+		  String url = "http://hc.apache.org/";
+		  get.setURI(new URI(url));
+		  response = getHttpClient().execute(get);
+		} catch (Exception e) {
+		  //处理异常
+		} finally {
+		  if(response != null) { 
+		    try {
+				EntityUtils.consume(response.getEntity());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} //会自动释放连接
+		  }
+		}
 	}
 
 	public static void simpleHttpClient() {
