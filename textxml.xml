@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+	<links>
+		<link>
+			<text />
+			<url>
+				www..com
+			</url>
+			<author>
+				hh
+			</author>
+			<date>
+				<day>
+					23
+				</day>
+				<month>
+					7
+				</month>
+				<year>2007</year>
+			</date>
+			<description>
+				A site
+			</description>
+		</link>
+	</links>
